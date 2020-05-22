@@ -1,0 +1,39 @@
+git学习笔记
+1. ssh-keygen -t rsa 在本地创建秘钥，然后发送给git远处库的管理员建立信任链接。
+
+2. 如果你更换了开发设备，那么你只需要把秘钥放入新的电脑环境中，即可。一般把生成的id_rsa,id_rsa.pub这两个文件放入到~/.ssh/目录中（该目录跟当前windows用户有关）。用户路径 .ssh 替换 id_sra, id_sra.pub
+
+4. 在命令行或终端中使用下面的命令可以设置git自己的名字和电子邮件。这是因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。
+   $git config --global user.name "your name"
+   $git config --global user.email "you@example.com"
+
+5. 将仓库克隆到本地
+   git clone git@114.215.192.176:kmis
+
+6. 分支 
+   git branch -a //查看所有分支
+   git branch 分支名。 例如: git branch myBranch   //创建分支
+   git branch -D 分支名 例如: git branch -D myBranch //删除本地分支
+   git push origin :分支名 例如 git push origin :myBranch //删除远程分支(即用空分支覆盖远程分支,删除远程分支是危险操作,慎用)
+   git checkout 分支名 例如: git checkout myBranch //切换到本地myBranch分支
+   git checkout origin 分支名 例如: git checkout origin myBranch //切换到远程myBranch分支(此时你的commit将会直接修改远程分支)
+   git merge  分支名 例如: git merge myBranch //把myBranch分支合并到当前分支
+
+7. 修改提交到本地
+   git add . //将本地修改添加到待提交区域(可指定文件) 如果开发失败，可以在add .之前使用 git checkout . 撤销当前修改(注意,撤销后无法恢复)
+   git commit -m "提交代码" //将待提交区域的代码提交到本地分支
+
+8. 同步远程仓库
+   git pull //默认同步所有分支
+   git pull origin myBranch //只同步远程myBranch分支
+
+9. 提交到远程
+   git push origin 分支名 例如: git push origin myBranch 若远程没有myBranch分支,则远程会自动创建远程branch分支
+   注意: push 之前一定要先pull 保证远程分支的代码的干净，无冲突
+
+10.所有人的commit操作均会生成一串hash值 git checkout hash值可以将分支内容撤回到hash指定的提交节点
+
+11.git status 这个命令可以查看当前状态(要多使用,最好每个命令使用后都用该命令查看一下当前状态有没有异常)
+
+12.gitk 该命令可以打开原生提交记录界面
+
